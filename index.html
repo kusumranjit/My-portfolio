@@ -1,50 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <style>
-        .mainpart{
-            text-align: center;
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Portfolio</title>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-        }
-    </style>
+.column1{
+  float: left;
+  width: 30%;
+  height: 400px; 
+}
+.column2{
+  float: left;
+  width: 70%;
+  padding-left:0px;
+  padding-right: 50px;
+  height:400px; 
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  align-content: center;
+}
+
+td, th {
+  border: 1px solid rgb(212, 208, 208);
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color:rgb(212, 208, 208);
+}
+* {
+  box-sizing: border-box;
+}
+
+
+#profileimage{
+    padding-left: 30px;
+}
+
+#Bio{
+    text-align: left;
+    padding-left: 40px;
+}
+#Fullname{
+    text-align: left;
+    padding-left: 30px;
+}
+</style>
 </head>
 <body>
     <div id="loading">
         <p>Loading........</p>
-        
     </div>
-    <div class="mainpart" id="maincontainer" hidden>
-        <img id="profileimage" width="100" height="100">
- 
-        <h2 id="Fullname"></h2>
-        <h3 id="Bio"></h3>
+
+<div class="row" id="maincontainer" hidden>
+  <div class="column1" style="background-color:rgb(212, 208, 208);">
+    <img id="profileimage" width="250" height="250">
+    <h1 id="Fullname"></h1>
+    <h3 id="Bio"></h3>
         
-        <p>
-            Check me out on <a id="githubLink">GITHUB</a>
-        </p>
-    </div>
+  </div>
+  <div class="column2" style="background-color:rgb(212, 208, 208)">
     
-    <script>
-        fetch("https://api.github.com/users/kusumranjit")
-        .then(response => response.json())
-        .then(function(data){
-            console.log("data")
-            document.getElementById('profileimage').src=data['avatar_url']
-            document.getElementById('Fullname').textContent=data['name']
-            document.getElementById('Bio').textContent=data['bio']
-            document.getElementById('githubLink').href=data['html_url']
-            document.getElementById('maincontainer').hidden=false
-            document.getElementById('loading').hidden=true
-            
-        })
+    <h1>PROFILE</h1>
+    <p>
+        I am an undergraduate student of BSc. Computer Science at
+        Kathmandu University graduating in December 2020 focusing on
+       web development, Data analysis, Research, AI and Machine learning. Learning new
+        things every day, travelling new places, meeting new peoples,
+        listening to the music is what I love to do. I never neglect opportunity for my
+        improvement.
+        </p>
+    
+        
+    <h2>
+        Check me out on <a id="githubLink">GITHUB</a>
+    </h2>
+    <h4 id="myprojects"></h4>
+    <h4 id="myfollowers"></h4>
+        <div id="github-projects"></div>
+
+  </div>
+</div>
+<div style="text-align: center;">
+   <h2>My Github Repositories and their URL </h2> 
+</div>
+<table>
+  <tr>
+    <th>Project Name</th>
+    <th>Project URL</th>
+    
+  </tr>
+  <tr>
+    <td>Simple Website</td>
+    <td> <a href="https://github.com/kusumranjit/Mywebsite.git">https://github.com/kusumranjit/Mywebsite.git</a> </td>
+    
+  </tr>
+  <tr>
+    <td>Abandon Object Detection</td>
+    <td> <a href="https://github.com/kusumranjit/Abandoned_object_detection.git">https://github.com/kusumranjit/Abandoned_object_detection.git </a></td>
+    
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    
+  </tr>
+</table>
+
+<script>
+    fetch("https://api.github.com/users/kusumranjit")
+    .then(response => response.json())
+    .then(function(data)
+    {
+        console.log("data")
+        let projects=data['public_repos']
+        let pro=`My Repositories in github: ${projects}` 
+        let followers_number=data['followers']
+        let followers_info=`My followers in github: ${followers_number}`
+        console.log("pro")
+        document.getElementById('profileimage').src=data['avatar_url']
+        document.getElementById('Fullname').textContent=data['name']
+        document.getElementById('Bio').textContent=data['bio']
+        document.getElementById('githubLink').href=data['html_url']
+        document.getElementById('myprojects').textContent=pro
+        document.getElementById('myfollowers').textContent=followers_info
+    
 
         
 
+        document.getElementById('maincontainer').hidden=false
+        document.getElementById('loading').hidden=true
+        
+    })
 
-    </script>
+</script>
 
 </body>
 </html>
