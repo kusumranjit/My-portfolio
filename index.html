@@ -1,35 +1,25 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>My Portfolio</title>
-<meta charset="UTF-8" />
-<style>
-* {
-  box-sizing: border-box;
-}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-.column1{
-  float: left;
-  width: 30%;
-  height: 400px; 
-}
-.column2{
-  float: left;
-  width: 70%;
-  padding-left:0px;
-  padding-right: 50px;
-  height:400px; 
-}
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Font-Awesome-master\css\all.css">
+    <title>Portfolio</title>
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-table {
+    <style>
+       .column{
+
+        background-color: rgb(212, 208, 208);
+
+       } 
+       table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -48,124 +38,124 @@ tr:nth-child(even) {
 * {
   box-sizing: border-box;
 }
-
-
 #profileimage{
-    padding-left: 30px;
-}
-
-#Bio{
-    text-align: left;
-    padding-left: 40px;
+    padding-left:50px;
+    padding-top: 40px;
 }
 #Fullname{
-    text-align: left;
-    padding-left: 30px;
+    padding-left:45px;
 }
-</style>
+#Bio{
+    padding-left:40px;
+}
+
+    </style>
 </head>
+
 <body>
-    <div id="loading">
-        <p>Loading........</p>
-    </div>
 
-<div class="row" id="maincontainer" hidden>
-  <div class="column1" style="background-color:rgb(212, 208, 208);">
-    <img id="profileimage" width="250" height="250">
-    <h1 id="Fullname"></h1>
-    <h3 id="Bio"></h3>
+    <section>
+        <div class="container-fluid column">
+            <div class="row">
+                <div class="col-md-4 pr-0">
+                    <div class="column1">
+                        <img id="profileimage" width="300" height="250">
+                        <h2 id="Fullname"></h2>
+                        <h4 id="Bio"></h4>
+                            
+                      </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="column2 pr-5 p-5 pl-0" >
+    
+                        <h1>PROFILE</h1>
+                        <p>
+                            I am an undergraduate student of BSc. Computer Science at
+                            Kathmandu University graduating in December 2020 focusing on
+                           web development, Data analysis, Research, AI and Machine learning. Learning new
+                            things every day, travelling new places, meeting new peoples,
+                            listening to the music is what I love to do. I never neglect opportunity for my
+                            improvement.
+                            </p>
+                        
+                            
+                        <h2>
+                            Check me out on <a id="githubLink">GITHUB</a>
+                        </h2>
+                        <h4 id="myprojects"></h4>
+                        <h4 id="myfollowers"></h4>
+                            <div id="github-projects"></div>
+                    
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="text-align: center;">
+        <h2>My Github Repositories and their URL </h2> 
+     </div>
+     <table>
+       <tr>
+         <th>Project Name</th>
+         <th>Project URL</th>
+         
+       </tr>
+       <tr>
+         <td>Simple Website</td>
+         <td> <a href="https://github.com/kusumranjit/Mywebsite.git">https://github.com/kusumranjit/Mywebsite.git</a> </td>
+         
+       </tr>
+       <tr>
+         <td>Abandon Object Detection</td>
+         <td> <a href="https://github.com/kusumranjit/Abandoned_object_detection.git">https://github.com/kusumranjit/Abandoned_object_detection.git </a></td>
+         
+       </tr>
+       <tr>
+         <td>Facial Keypoints Detection</td>
+         <td> <a href="https://github.com/kusumranjit/Facial-Keypoint-Detection-.git">https://github.com/kusumranjit/Facial-Keypoint-Detection-.git</a></td>
+         
+       </tr>
+       <tr>
+         <td>Remind Me Diary</td>
+         <td> <a href="https://github.com/kusumranjit/Remind_Me_Diary.git">https://github.com/kusumranjit/Remind_Me_Diary.git</a></td>
+         
+       </tr>
+       <tr>
+         <td>Sharing Notes</td>
+         <td> <a href="https://github.com/kusumranjit/Sharing-Notes.git">https://github.com/kusumranjit/Sharing-Notes.git</a></td>
+         
+       </tr>
+       <tr>
+         <td>My Portfolio</td>
+         <td> <a href="https://github.com/kusumranjit/kusumranjit.github.io.git">https://github.com/kusumranjit/kusumranjit.github.io.git</a></td>
+         
+       </tr>
+     </table>
+    <script>
+        fetch("https://api.github.com/users/kusumranjit")
+        .then(response => response.json())
+        .then(function(data)
+        {
+            console.log("data")
+            let projects=data['public_repos']
+            let pro=`My Repositories in github: ${projects}` 
+            let followers_number=data['followers']
+            let followers_info=`My followers in github: ${followers_number}`
+            console.log("pro")
+            document.getElementById('profileimage').src=data['avatar_url']
+            document.getElementById('Fullname').textContent=data['name']
+            document.getElementById('Bio').textContent=data['bio']
+            document.getElementById('githubLink').href=data['html_url']
+            document.getElementById('myprojects').textContent=pro
+            document.getElementById('myfollowers').textContent=followers_info
         
-  </div>
-  <div class="column2" style="background-color:rgb(212, 208, 208)">
     
-    <h1>PROFILE</h1>
-    <p>
-        I am an undergraduate student of BSc. Computer Science at
-        Kathmandu University graduating in December 2020 focusing on
-       web development, Data analysis, Research, AI and Machine learning. Learning new
-        things every day, travelling new places, meeting new peoples,
-        listening to the music is what I love to do. I never neglect opportunity for my
-        improvement.
-        </p>
+            
     
-        
-    <h2>
-        Check me out on <a id="githubLink">GITHUB</a>
-    </h2>
-    <h4 id="myprojects"></h4>
-    <h4 id="myfollowers"></h4>
-        <div id="github-projects"></div>
-
-  </div>
-</div>
-<div style="text-align: center;">
-   <h2>My Github Repositories and their URL </h2> 
-</div>
-<table>
-  <tr>
-    <th>Project Name</th>
-    <th>Project URL</th>
+            document.getElementById('maincontainer').hidden=false
+            document.getElementById('loading').hidden=true
+            
+        })
     
-  </tr>
-  <tr>
-    <td>Simple Website</td>
-    <td> <a href="https://github.com/kusumranjit/Mywebsite.git">https://github.com/kusumranjit/Mywebsite.git</a> </td>
-    
-  </tr>
-  <tr>
-    <td>Abandon Object Detection</td>
-    <td> <a href="https://github.com/kusumranjit/Abandoned_object_detection.git">https://github.com/kusumranjit/Abandoned_object_detection.git </a></td>
-    
-  </tr>
-  <tr>
-    <td>Facial Keypoints Detection</td>
-    <td> <a href="https://github.com/kusumranjit/Facial-Keypoint-Detection-.git">https://github.com/kusumranjit/Facial-Keypoint-Detection-.git</a></td>
-    
-  </tr>
-  <tr>
-    <td>Remind Me Diary</td>
-    <td> <a href="https://github.com/kusumranjit/Remind_Me_Diary.git">https://github.com/kusumranjit/Remind_Me_Diary.git</a></td>
-    
-  </tr>
-  <tr>
-    <td>Sharing Notes</td>
-    <td> <a href="https://github.com/kusumranjit/Sharing-Notes.git">https://github.com/kusumranjit/Sharing-Notes.git</a></td>
-    
-  </tr>
-  <tr>
-    <td>My Portfolio</td>
-    <td> <a href="https://github.com/kusumranjit/kusumranjit.github.io.git">https://github.com/kusumranjit/kusumranjit.github.io.git</a></td>
-    
-  </tr>
-</table>
-
-<script>
-    fetch("https://api.github.com/users/kusumranjit")
-    .then(response => response.json())
-    .then(function(data)
-    {
-        console.log("data")
-        let projects=data['public_repos']
-        let pro=`My Repositories in github: ${projects}` 
-        let followers_number=data['followers']
-        let followers_info=`My followers in github: ${followers_number}`
-        console.log("pro")
-        document.getElementById('profileimage').src=data['avatar_url']
-        document.getElementById('Fullname').textContent=data['name']
-        document.getElementById('Bio').textContent=data['bio']
-        document.getElementById('githubLink').href=data['html_url']
-        document.getElementById('myprojects').textContent=pro
-        document.getElementById('myfollowers').textContent=followers_info
-    
-
-        
-
-        document.getElementById('maincontainer').hidden=false
-        document.getElementById('loading').hidden=true
-        
-    })
-
-</script>
-
+    </script>
 </body>
-</html>
